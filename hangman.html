@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hangman Game</h1>
+        <canvas id="hangmanCanvas" width="200" height="200"></canvas>
+        <div id="wordDisplay" class="word-display"></div>
+        <div id="wrongLetters" class="wrong-letters"></div>
+        <div class="buttons">
+            <button id="restartButton" onclick="restartGame()">Restart Game</button>
+        </div>
+        <input type="text" id="guessInput" placeholder="Guess a letter or word" />
+        <button id="guessButton" onclick="guess()">Guess</button>
+        <div id="message" class="message"></div>
+    </div>
+
+    <a href="https://bigqohio.github.io/JaycesIdeas.github.io/index2.html" class="footer-text" target="_blank">Jayces Idea™</a>
+
+    <script src="script.js"></script>
+</body>
+</html>
