@@ -1,4 +1,4 @@
-const words = ["javascript", "hangman", "programming", "coding", "challenge", "jayce", "hummus", "turtle", "fart", "toilet", "words", "item", "apple", "stairs"];
+const words = ["javascript", "hangman", "programming", "coding", "challenge", "jayce", "hummus", "turtle", "fart", "toilet", "words", "item", "apple", "stairs", "because", "microscopic", "disease", "language"];
 let selectedWord;
 let wrongLetters = [];
 let correctLetters = [];
@@ -16,15 +16,28 @@ function displayWord() {
 }
 
 function guess() {
-    const guessedWord = guessInput.value.toLowerCase();
+    const guessInputValue = guessInput.value.trim().toLowerCase();
     guessInput.value = ""; // Clear input
 
-    if (guessedWord && !wrongLetters.includes(guessedWord) && !correctLetters.includes(guessedWord)) {
-        if (guessedWord === selectedWord) {
-            correctLetters = selectedWord.split("");
+    if (guessInputValue) {
+        // Check if it's a single letter or a full word
+        if (guessInputValue.length === 1) {
+            // It's a letter guess
+            if (!wrongLetters.includes(guessInputValue) && !correctLetters.includes(guessInputValue)) {
+                if (selectedWord.includes(guessInputValue)) {
+                    correctLetters.push(guessInputValue); // Add guessed letter to correctLetters
+                } else {
+                    wrongLetters.push(guessInputValue); // Add guessed letter to wrongLetters
+                }
+            }
+        } else if (guessInputValue === selectedWord) {
+            // Full word guess
+            correctLetters = selectedWord.split(""); // Set correctLetters to the full word
         } else {
-            wrongLetters.push(guessedWord);
+            // If the word guess is incorrect
+            wrongLetters.push(guessInputValue);
         }
+
         updateDisplay();
     }
 }
@@ -57,16 +70,9 @@ function restartGame() {
 selectRandomWord();
 displayWord();
 
-
-
-
-
-// Existing code...
-
+// Event listener for the "Enter" key press
 document.getElementById("guessInput").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         guess();
     }
 });
-
-// Existing code...
